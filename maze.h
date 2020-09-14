@@ -5,6 +5,8 @@
 #define SFML_STATIC
 #include "cell.h"
 #include<stack>
+#include "image.h"
+#include "feature.h"
 #include<string>
 #include<vector>
 #include "SFML/Graphics.hpp"
@@ -15,26 +17,13 @@ class Maze
 {
     private:
         vector<unsigned char> maze;
-        
-        int width;
-        int height;
-        int cellSize;
-        int rows;
-        int cols;
-        int animate;
-        int fps;
-        int externalLimit;
+        Feature f;
 
-        sf::Color start;
-        sf::Color end;
+        int externalLimit;
 
         float total;
         sf::Time tempTime;
 
-        sf::Color notVisitedColor;
-        sf::Color currentColor;
-        sf::Color borderColor;
-        sf::Color backgroundColor;
         sf::Color quadColor;
         sf::Color localBorderColor;
         
@@ -48,21 +37,15 @@ class Maze
         uint64_t randomNumber;
         std::array<char, 4> direction;
         std::size_t currentIndex;
+
+        Image image;
         
     public:
-        void setAnimation(int animate);
-        void setFps(int fps);
-        void setVisitedCellColor(sf::Color start,sf::Color end);
-        void setNotVisitedCellColor(sf::Color color);
-        void setCurrentCellColor(sf::Color color);
-        void setBorderColor(sf::Color color);
-        void setBackgroundColor(sf::Color color);
-        void setWidth(int width);
-        void setHeight(int height);
-        void setCellSize(int size);
+        void setFeatures(const Feature &feature);
         void createMaze(string windowName);
    
     private:  
+       
         void checkNeighbour(int current);
         void dfsBacktrack();
         void initialize();

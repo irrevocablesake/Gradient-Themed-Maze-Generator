@@ -12,16 +12,16 @@ using namespace std;
 int main()
 {
     sf::Color grey(200,200,200);
-    sf::Color start(0,139,139);
+    sf::Color start(209,59,19);
     sf::Color end(0,25,51);
     
     Feature feature;
 
-    feature.animate=1;
+    feature.animate=-1;
     feature.fps=0;
-    feature.width=500;
-    feature.height=500;
-    feature.cellSize=22;
+    feature.width=1000;
+    feature.height=650;
+    feature.cellSize=7;
     feature.backgroundColor=grey;
     feature.borderColor=sf::Color::White;
     feature.currentColor=sf::Color::Red;

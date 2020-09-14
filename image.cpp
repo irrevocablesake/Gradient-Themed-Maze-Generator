@@ -15,9 +15,9 @@ void Image::saveImage(string fileName,vector<unsigned char> &maze, const Feature
     {
             for(int y = 0; y < 10; y++)
             {
-                pixels[((x + y * width) * 4) + 0] = 255; // R?
-                pixels[((x + y * width) * 4) + 1] = 255; // G?
-                pixels[((x + y * width) * 4) + 2] = 255; // B?
+                pixels[((x + y * width) * 4) + 0] = f.backgroundColor.r; // R?
+                pixels[((x + y * width) * 4) + 1] = f.backgroundColor.g; // G?
+                pixels[((x + y * width) * 4) + 2] = f.backgroundColor.b; // B?
                 pixels[((x + y * width) * 4) + 3] = 255; // A?
             }
         }
@@ -26,9 +26,9 @@ void Image::saveImage(string fileName,vector<unsigned char> &maze, const Feature
     {
             for(int y = 0; y < height; y++)
             {
-                pixels[((x + y * width) * 4) + 0] = 255; // R?
-                pixels[((x + y * width) * 4) + 1] = 255; // G?
-                pixels[((x + y * width) * 4) + 2] = 255; // B?
+                pixels[((x + y * width) * 4) + 0] = f.backgroundColor.r; // R?
+                pixels[((x + y * width) * 4) + 1] = f.backgroundColor.g; // G?
+                pixels[((x + y * width) * 4) + 2] = f.backgroundColor.b; // B?
                 pixels[((x + y * width) * 4) + 3] = 255; // A?
             }
         }
@@ -37,9 +37,9 @@ void Image::saveImage(string fileName,vector<unsigned char> &maze, const Feature
     {
             for(int y = height-10; y < height; y++)
             {
-                pixels[((x + y * width) * 4) + 0] = 255; // R?
-                pixels[((x + y * width) * 4) + 1] = 255; // G?
-                pixels[((x + y * width) * 4) + 2] = 255; // B?
+                pixels[((x + y * width) * 4) + 0] = f.backgroundColor.r; // R?
+                pixels[((x + y * width) * 4) + 1] = f.backgroundColor.g; // G?
+                pixels[((x + y * width) * 4) + 2] = f.backgroundColor.b; // B?
                 pixels[((x + y * width) * 4) + 3] = 255; // A?
             }
         }
@@ -48,9 +48,9 @@ void Image::saveImage(string fileName,vector<unsigned char> &maze, const Feature
     {
             for(int y =0; y < height; y++)
             {
-                pixels[((x + y * width) * 4) + 0] = 255; // R?
-                pixels[((x + y * width) * 4) + 1] = 255; // G?
-                pixels[((x + y * width) * 4) + 2] = 255; // B?
+                pixels[((x + y * width) * 4) + 0] = f.backgroundColor.r; // R?
+                pixels[((x + y * width) * 4) + 1] = f.backgroundColor.g; // G?
+                pixels[((x + y * width) * 4) + 2] = f.backgroundColor.b; // B?
                 pixels[((x + y * width) * 4) + 3] = 255; // A?
             }
         }
@@ -121,7 +121,7 @@ void Image::saveImage(string fileName,vector<unsigned char> &maze, const Feature
 
     sf::Image image;
     image.create(f.cols*f.cellSize + 20,f.rows * f.cellSize + 20,pixels);
-    image.saveToFile("finally.png");
+    image.saveToFile(fileName);
 
     delete[] pixels;
 }

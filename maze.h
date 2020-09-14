@@ -35,7 +35,9 @@ class Maze
         
         vector<int> backtrack;
         uint64_t randomNumber;
-        std::array<char, 4> direction;
+        
+        char direction[4];
+
         std::size_t currentIndex;
 
         Image image;

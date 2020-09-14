@@ -15,7 +15,7 @@ int main()
     sf::Color end(0,25,51);
     
     Feature feature;
-    
+
     feature.animate=-1;
     feature.fps=0;
     feature.width=9000;

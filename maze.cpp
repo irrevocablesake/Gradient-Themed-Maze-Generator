@@ -6,7 +6,8 @@
 
 using namespace std;
 
-// helper function
+//******************************************************************************************************************************
+//Random Number Generator
 
 struct xorshift128p_state
 {
@@ -25,9 +26,10 @@ uint64_t xorshift128p(struct xorshift128p_state *state)
 	return (t + s);
 }
 
-//helper function
+//******************************************************************************************************************************
 
-// features section
+//******************************************************************************************************************************
+//Set the Feature of the Maze
 
 void Maze::setFeatures(const Feature &feature)
 {
@@ -36,35 +38,33 @@ void Maze::setFeatures(const Feature &feature)
     f.cols=f.width/f.cellSize;
 }
 
-// features section
+//******************************************************************************************************************************
 
-// maths model generator
+//******************************************************************************************************************************
+//Dfs Algorithm
 
 void Maze::checkNeighbour(int current)
 {
-    // randomNumber=rand()%d;
-    currentIndex = 0;
-  direction = {};
+  currentIndex = 0;
 
   toptemp = current - f.cols;
   righttemp = current + 1;
   bottomtemp = current + f.cols;
   lefttemp = current - 1;
 
-  if (toptemp >= 0 && toptemp <= (externalLimit) &&
-      !(maze[toptemp] & visitedMask)) {
+  if (toptemp >= 0 && !(maze[toptemp] & visitedMask)) {
     direction[currentIndex++] = 't';
   }
-  if (righttemp >= 0 && righttemp <= (externalLimit) &&
+  if (righttemp <= (externalLimit) &&
       !(maze[righttemp] & visitedMask) &&
       abs((current / f.cols) - (righttemp / f.cols)) == 0) {
     direction[currentIndex++] = 'r';
   }
-  if (bottomtemp >= 0 && bottomtemp <= (externalLimit) &&
+  if (bottomtemp <= (externalLimit) &&
       !(maze[bottomtemp] & visitedMask)) {
     direction[currentIndex++] = 'b';
   }
-  if (lefttemp >= 0 && lefttemp <= (externalLimit) &&
+  if (lefttemp >= 0 &&
       !(maze[lefttemp] & visitedMask) &&
       abs((current / f.cols) - (lefttemp / f.cols)) == 0) {
     direction[currentIndex++] = 'l';
@@ -79,10 +79,8 @@ void Maze::checkNeighbour(int current)
 
         if(direction[randomNumber]=='t')
         {
-            maze[toptemp] |= visitedMask;
-            
+            maze[toptemp] |= visitedMask;  
             backtrack.push_back(toptemp);
-            
             maze[current] &=~topMask;
             maze[toptemp] &=~bottomMask;
         }
@@ -108,7 +106,6 @@ void Maze::checkNeighbour(int current)
             maze[lefttemp]&=~rightMask;
         }
     }
-    
 }
 
 void Maze::dfsBacktrack()
@@ -135,9 +132,10 @@ void Maze::dfsBacktrack()
     }
 }
 
-// maths model generator
+//*****************************************************************************************************************************
 
-// graphics generator
+//*****************************************************************************************************************************
+//Graphics Generator
 
 void Maze::handleBorder(int borderCounter,sf::Color borderColor,int x,int y,int value)
 {
@@ -390,7 +388,10 @@ void Maze::drawWindow(sf::RenderWindow &window,string windowName)
       }
 }
 
-// graphics generator
+//****************************************************************************************************************************
+
+//****************************************************************************************************************************
+//Initialization and Handler
 
 void Maze::initialize()
 {
@@ -419,7 +420,6 @@ void Maze::initialize()
 
 void Maze::createMaze(string windowName)
 {
-
     initialize();
 
     maze[0] |= visitedMask;
@@ -429,8 +429,7 @@ void Maze::createMaze(string windowName)
 
     if(f.animate==-1)
     {   
-        dfsBacktrack();
-         
+        dfsBacktrack(); 
         image.saveImage("love_testing.png",maze,f);
     }
     else if(f.animate==0)
@@ -452,3 +451,5 @@ void Maze::createMaze(string windowName)
     maze.clear();
     vector<unsigned char>().swap(maze);
 }
+
+//*****************************************************************************************************************************

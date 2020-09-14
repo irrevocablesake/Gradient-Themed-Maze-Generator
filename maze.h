@@ -3,8 +3,9 @@
 #define _MAZE_H_
 
 #define SFML_STATIC
-#include "cell.h"
+#include "masking.h"
 #include<stack>
+#include "helper.h"
 #include "image.h"
 #include "feature.h"
 #include<string>
@@ -18,6 +19,7 @@ class Maze
     private:
         vector<unsigned char> maze;
         Feature f;
+        Helper helper;
 
         int externalLimit;
 

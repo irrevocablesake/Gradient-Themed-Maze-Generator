@@ -7,28 +7,6 @@
 using namespace std;
 
 //******************************************************************************************************************************
-//Random Number Generator
-
-struct xorshift128p_state
-{
-  uint64_t a, b;
-}state;
-
-uint64_t xorshift128p(struct xorshift128p_state *state)
-{
-	uint64_t t = state->a;
-	uint64_t const s = state->b;
-	state->a = s;
-	t ^= t << 23;		// a
-	t ^= t >> 17;		// b
-	t ^= s ^ (s >> 26);	// c
-	state->b = t;
-	return (t + s);
-}
-
-//******************************************************************************************************************************
-
-//******************************************************************************************************************************
 //Set the Feature of the Maze
 
 void Maze::setFeatures(const Feature &feature)
@@ -74,7 +52,7 @@ void Maze::checkNeighbour(int current)
      
     if(currentIndex>0)
     {
-        randomNumber=(xorshift128p(&state))%currentIndex;
+        randomNumber=(helper.xorshift128p(&helper.state))%currentIndex;
         backtrack.push_back(current);
 
         if(direction[randomNumber]=='t')
@@ -396,8 +374,8 @@ void Maze::drawWindow(sf::RenderWindow &window,string windowName)
 void Maze::initialize()
 {
     srand(time(NULL));
-    state.a=rand();
-    state.b=rand();
+    helper.state.a=rand();
+    helper.state.b=rand();
 
     try 
     {

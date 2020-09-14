@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "cell.h"
+#include "masking.h"
 #include "feature.h"
 #include "SFML/Graphics.hpp"
 #include<iostream>

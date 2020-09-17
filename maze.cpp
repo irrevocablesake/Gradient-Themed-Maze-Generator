@@ -115,10 +115,10 @@ void Maze::dfsBacktrack()
 //*****************************************************************************************************************************
 //Graphics Generator
 
-void Maze::handleBorder(int borderCounter,sf::Color borderColor,int x,int y,int value)
+void Maze::handleBorder(int borderCounter,int x,int y,int value)
 {
     int index;
-    if(f.animate!=1)
+    if(value<0)
     {
         index=(f.cols*x)+y;
     }
@@ -134,8 +134,8 @@ void Maze::handleBorder(int borderCounter,sf::Color borderColor,int x,int y,int 
     }
     else
     {
-        border[borderCounter].color =borderColor;
-        border[borderCounter+1].color =borderColor;
+        border[borderCounter].color =sf::Color::Transparent;
+        border[borderCounter+1].color =sf::Color::Transparent;
     }    
     if(maze[index] & rightMask)
     {
@@ -144,8 +144,8 @@ void Maze::handleBorder(int borderCounter,sf::Color borderColor,int x,int y,int 
     }
     else
     {
-        border[borderCounter+2].color =borderColor;
-        border[borderCounter+3].color = borderColor;
+        border[borderCounter+2].color =sf::Color::Transparent;
+        border[borderCounter+3].color = sf::Color::Transparent;
     }
     if(maze[index] & bottomMask)
     {
@@ -154,8 +154,8 @@ void Maze::handleBorder(int borderCounter,sf::Color borderColor,int x,int y,int 
     }
     else
     {
-        border[borderCounter+4].color =borderColor;
-        border[borderCounter+5].color = borderColor;
+        border[borderCounter+4].color =sf::Color::Transparent;
+        border[borderCounter+5].color = sf::Color::Transparent;
     }
     if(maze[index] & leftMask)
     {
@@ -164,8 +164,8 @@ void Maze::handleBorder(int borderCounter,sf::Color borderColor,int x,int y,int 
     }
     else
     {
-        border[borderCounter+6].color = borderColor;
-        border[borderCounter+7].color =borderColor;
+        border[borderCounter+6].color = sf::Color::Transparent;
+        border[borderCounter+7].color =sf::Color::Transparent;
     }
 }
 
@@ -185,7 +185,7 @@ void Maze::createVertexArray(int explicitCheck)
     float thirdCalcx;
     float thirdCalcy;
 
-    if(explicitCheck!=1)
+    if(explicitCheck==1)
     {
         for(int i=0;i<f.rows;i++)
         {
@@ -252,26 +252,10 @@ void Maze::createVertexArray(int explicitCheck)
                     quad[counter+1].color = quadColor;
                     quad[counter+2].color = quadColor;
                     quad[counter+3].color =quadColor;
-
-                    localBorderColor=quadColor;
                 }
-
-                if(!f.animate)
-                {
-                    handleBorder(borderCounter,localBorderColor,i,j,-1);
-                }
-                else
-                {
-                    handleBorder(borderCounter,f.borderColor,i,j,-1);
-                    if((f.cols*i+j)==backtrack.back())   
-                    {
-                        quad[counter].color = f.currentColor;
-                        quad[counter+1].color =f.currentColor;
-                        quad[counter+2].color = f.currentColor;
-                        quad[counter+3].color =f.currentColor;
-                    }      
-                }
-
+  
+                handleBorder(borderCounter,i,j,-1);
+            
                 counter=counter+4;
                 borderCounter=borderCounter+8;
             }
@@ -280,7 +264,6 @@ void Maze::createVertexArray(int explicitCheck)
     }
     else
     {
-
         if(!backtrack.empty())
         {
             float first=initial-(int(backtrack.back()/f.cols)) * (initial/f.rows);
@@ -295,21 +278,10 @@ void Maze::createVertexArray(int explicitCheck)
             quad[(backtrack.back()*4)+2].color = quadColor;
             quad[(backtrack.back()*4)+3].color =quadColor;
 
-            if(backtrack.size()>2)
+            if(backtrack.size()>=2)
             {
-                handleBorder((backtrack.back()*8),quadColor,-1,-1,backtrack.back());
-
-                first=initial-int((backtrack[backtrack.size()-2])/f.cols) * (initial/f.rows);
-                second=1 -first;
-
-                sf::Color newQuadColor;
-
-                newQuadColor.r=(f.start.r*first)+(f.end.r*second);
-                newQuadColor.g=(f.start.g*first)+(f.end.g*second);
-                newQuadColor.b=(f.start.b*first)+(f.end.b*second);
-            
-                handleBorder((backtrack[(backtrack.size()-2)]*8),newQuadColor,-1,-1,backtrack[(backtrack.size()-2)]);
-              
+                handleBorder((backtrack.back()*8),-1,-1,backtrack.back());            
+                handleBorder((backtrack[(backtrack.size()-2)]*8),-1,-1,backtrack[(backtrack.size()-2)]);            
             }
         }
     }
@@ -341,7 +313,7 @@ void Maze::drawWindow(sf::RenderWindow &window,string windowName)
             if(f.animate)
             {
                 dfsBacktrack();
-                createVertexArray(1);
+                createVertexArray(-1);
                 if(!backtrack.empty())
                 {
                     quad[(backtrack.back()*4)].color = f.currentColor;
@@ -373,10 +345,6 @@ void Maze::drawWindow(sf::RenderWindow &window,string windowName)
 
 void Maze::initialize()
 {
-    srand(time(NULL));
-    helper.state.a=rand();
-    helper.state.b=rand();
-
     try 
     {
         unsigned char initial=0b0000'1111;
@@ -414,14 +382,14 @@ void Maze::createMaze(string windowName)
     {
         sf::RenderWindow window;
         dfsBacktrack();
-        createVertexArray(-1);
+        createVertexArray(1);
         drawWindow(window,windowName);
         image.saveImage("love_testing.png",maze,f);
     }
     else if(f.animate==1)
     {
         sf::RenderWindow window;
-        createVertexArray(-1);
+        createVertexArray(1);
         drawWindow(window,windowName);
         image.saveImage("love_testing.png",maze,f);
     }

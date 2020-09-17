@@ -17,11 +17,11 @@ int main()
     
     Feature feature;
 
-    feature.animate=-1;
+    feature.animate=1;
     feature.fps=0;
     feature.width=1000;
     feature.height=650;
-    feature.cellSize=7;
+    feature.cellSize=23;
     feature.backgroundColor=grey;
     feature.borderColor=sf::Color::White;
     feature.currentColor=sf::Color::Red;
@@ -29,10 +29,8 @@ int main()
     feature.start=start;
     feature.end=end;
 
-  
     Maze maze;
     maze.setFeatures(feature);
-   
     maze.createMaze("DFS Backtracking Maze");
   
     return 0;

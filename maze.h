@@ -27,7 +27,6 @@ class Maze
         sf::Time tempTime;
 
         sf::Color quadColor;
-        sf::Color localBorderColor;
         
         int top,right,bottom,left;
         int toptemp,righttemp,bottomtemp,lefttemp;
@@ -55,8 +54,7 @@ class Maze
         void initialize();
         void drawWindow(sf::RenderWindow &window, string windowName);
         void saveAsImage();
-      
-        void handleBorder(int borderCounter,sf::Color borderColor,int x,int y,int value);
+        void handleBorder(int borderCounter,int x,int y,int value);
         void createVertexArray(int explicitCheck=-1);
 };
 

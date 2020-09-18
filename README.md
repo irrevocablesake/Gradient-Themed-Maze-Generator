@@ -18,4 +18,4 @@ You can find more information about this on my blog : https://theirrevocablesake
 
 # License
 
-The project is under ![MIT License]()
+The project is under ![MIT License](https://github.com/irrevocablesake/Gradient-Themed-Maze-Generator/blob/master/LICENSE)

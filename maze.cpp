@@ -88,7 +88,7 @@ void Maze::checkNeighbour(int current)
 
 void Maze::dfsBacktrack()
 {
-    if(f.animate!=1)
+    if(f.mode!=ANIMATE)
     {
         int current;
          
@@ -101,7 +101,7 @@ void Maze::dfsBacktrack()
         
         }
     }
-    else if(f.animate==1 && !backtrack.empty())
+    else if(f.mode==ANIMATE && !backtrack.empty())
     {
         int current=backtrack.back();
         backtrack.pop_back();
@@ -292,7 +292,7 @@ void Maze::drawWindow(sf::RenderWindow &window,string windowName)
       int padding=10;
       window.create(sf::VideoMode((f.cols*f.cellSize)+(2*padding),(f.rows*f.cellSize)+(2*padding)),windowName);
       
-      if(f.animate)
+      if(f.mode==ANIMATE)
       {
         window.setFramerateLimit(f.fps);
       }
@@ -310,7 +310,7 @@ void Maze::drawWindow(sf::RenderWindow &window,string windowName)
 
           window.clear(f.backgroundColor);
 
-            if(f.animate)
+            if(f.mode==ANIMATE)
             {
                 dfsBacktrack();
                 createVertexArray(-1);
@@ -328,7 +328,7 @@ void Maze::drawWindow(sf::RenderWindow &window,string windowName)
 
             window.display();
 
-        if(f.animate && !backtrack.empty())
+        if(f.mode==ANIMATE && !backtrack.empty())
         {
             quad[(backtrack.back()*4)].color = quadColor;
             quad[(backtrack.back()*4)+1].color = quadColor;
@@ -354,7 +354,7 @@ void Maze::initialize()
     {
         cout<<"error in initializing the array";
     }
-    if(f.animate!=-1)
+    if(f.mode!=IMAGE)
     {
     quad.setPrimitiveType(sf::Quads);
     border.setPrimitiveType(sf::Lines);
@@ -373,12 +373,12 @@ void Maze::createMaze(string windowName)
 
     externalLimit=(f.rows*f.cols)-1;
 
-    if(f.animate==-1)
+    if(f.mode==IMAGE)
     {   
         dfsBacktrack(); 
-        image.saveImage("love_testing.png",maze,f);
+        // image.saveImage("love_testing.png",maze,f);
     }
-    else if(f.animate==0)
+    else if(f.mode==DISPLAY)
     {
         sf::RenderWindow window;
         dfsBacktrack();
@@ -386,7 +386,7 @@ void Maze::createMaze(string windowName)
         drawWindow(window,windowName);
         image.saveImage("love_testing.png",maze,f);
     }
-    else if(f.animate==1)
+    else if(f.mode==ANIMATE)
     {
         sf::RenderWindow window;
         createVertexArray(1);

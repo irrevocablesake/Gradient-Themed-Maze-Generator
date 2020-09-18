@@ -14,6 +14,13 @@
 
 using namespace std;
 
+enum Mode
+{
+    ANIMATE=1,
+    IMAGE=-1,
+    DISPLAY=0,
+};
+
 class Maze
 {
     private:

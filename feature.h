@@ -16,7 +16,7 @@ struct Feature
     int cols;
     int cellSize;
     int fps;
-    int animate;
+    int mode;
 
     sf::Color borderColor;
     sf::Color backgroundColor;

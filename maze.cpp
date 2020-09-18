@@ -86,7 +86,7 @@ void Maze::checkNeighbour(int current)
     }
 }
 
-void Maze::dfsBacktrack()
+void Maze::dfs()
 {
     if(f.mode!=ANIMATE)
     {
@@ -312,7 +312,7 @@ void Maze::drawWindow(sf::RenderWindow &window,string windowName)
 
             if(f.mode==ANIMATE)
             {
-                dfsBacktrack();
+                dfs();
                 createVertexArray(-1);
                 if(!backtrack.empty())
                 {
@@ -375,13 +375,13 @@ void Maze::createMaze(string windowName)
 
     if(f.mode==IMAGE)
     {   
-        dfsBacktrack(); 
+        dfs(); 
         image.saveImage("love_testing.png",maze,f);
     }
     else if(f.mode==DISPLAY)
     {
         sf::RenderWindow window;
-        dfsBacktrack();
+        dfs();
         createVertexArray(1);
         drawWindow(window,windowName);
         image.saveImage("love_testing.png",maze,f);

@@ -20,9 +20,9 @@ int main()
 
     feature.mode=-1;
     feature.fps=0;
-    feature.width=750;
-    feature.height=350;
-    feature.cellSize=14;
+    feature.width=2000;
+    feature.height=2000;
+    feature.cellSize=2;
     feature.backgroundColor=sf::Color::Black;
     feature.borderColor=sf::Color::White;
     feature.currentColor=sf::Color::Red;

@@ -57,7 +57,7 @@ class Maze
     private:  
        
         void checkNeighbour(int current);
-        void dfsBacktrack();
+        void dfs();
         void initialize();
         void drawWindow(sf::RenderWindow &window, string windowName);
         void saveAsImage();

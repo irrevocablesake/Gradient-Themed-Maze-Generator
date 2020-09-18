@@ -18,11 +18,11 @@ int main()
     
     Feature feature;
 
-    feature.mode=1;
-    feature.fps=60;
+    feature.mode=-1;
+    feature.fps=0;
     feature.width=750;
     feature.height=350;
-    feature.cellSize=16;
+    feature.cellSize=14;
     feature.backgroundColor=sf::Color::Black;
     feature.borderColor=sf::Color::White;
     feature.currentColor=sf::Color::Red;

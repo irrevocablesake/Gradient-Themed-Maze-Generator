@@ -376,7 +376,7 @@ void Maze::createMaze(string windowName)
     if(f.mode==IMAGE)
     {   
         dfsBacktrack(); 
-        // image.saveImage("love_testing.png",maze,f);
+        image.saveImage("love_testing.png",maze,f);
     }
     else if(f.mode==DISPLAY)
     {

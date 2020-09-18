@@ -376,7 +376,7 @@ void Maze::createMaze(string windowName)
     if(f.mode==IMAGE)
     {   
         dfs(); 
-        image.saveImage("love_testing.png",maze,f);
+        image.saveImage("render.png",maze,f);
     }
     else if(f.mode==DISPLAY)
     {
@@ -384,14 +384,14 @@ void Maze::createMaze(string windowName)
         dfs();
         createVertexArray(1);
         drawWindow(window,windowName);
-        image.saveImage("love_testing.png",maze,f);
+        image.saveImage("render.png",maze,f);
     }
     else if(f.mode==ANIMATE)
     {
         sf::RenderWindow window;
         createVertexArray(1);
         drawWindow(window,windowName);
-        image.saveImage("love_testing.png",maze,f);
+        image.saveImage("render.png",maze,f);
     }
 
     maze.clear();

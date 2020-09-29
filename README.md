@@ -12,7 +12,7 @@ This is the saved image produced by the program
 
 These are the controls for the maze generation, by changing the values one can produce different mazes.
 
-![controls](https://github.com/irrevocablesake/Gradient-Themed-Maze-Generator/blob/master/images/controls.png)
+![controls](https://github.com/irrevocablesake/Gradient-Themed-Maze-Generator/blob/master/images/final_control.png)
 
 If you are interested in knowing how to implement the underlying algorithms, be it the DFS or the Graphics, check out my blog: https://theirrevocablesake.com/blog/series/maze-generator/ep1/
 

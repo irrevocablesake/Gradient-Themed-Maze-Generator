@@ -18,7 +18,7 @@ int main()
     
     Feature feature;
 
-    feature.mode=-1;
+    feature.mode=ANIMATE;
     feature.fps=0;
     feature.width=2000;
     feature.height=2000;

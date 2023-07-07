@@ -10,7 +10,7 @@ This is a saved image produced by the program.
 
 ![render](https://github.com/irrevocablesake/Gradient-Themed-Maze-Generator/blob/master/images/render.png)
 
-They are the controls for the maze generation process, by changing the values you can produce different mazes.
+These are the controls for the maze generation process, by changing the values you can produce different mazes.
 
 ![controls](https://github.com/irrevocablesake/Gradient-Themed-Maze-Generator/blob/master/images/final_control.PNG)
 

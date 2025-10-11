@@ -14,8 +14,4 @@ These are the controls for the maze generation process, by changing the values y
 
 ![controls](https://github.com/irrevocablesake/Gradient-Themed-Maze-Generator/blob/master/images/final_control.PNG)
 
-If you are interested in knowing how to implement the underlying algorithms, be it the DFS or the Graphics, check out my blog: https://theirrevocablesake.com/blog/series/maze-generator/ep1/
-
-# License
-
-The project is under ![MIT License](https://github.com/irrevocablesake/Gradient-Themed-Maze-Generator/blob/master/LICENSE)
+If you are interested in knowing how to implement the underlying algorithms, be it the DFS or the Graphics, check out my blog: https://theirrevocablesake.com/blog/series/maze-generator/ep1/ **( inactive )**
